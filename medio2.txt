@@ -1,0 +1,42 @@
+1. `docker pull golang` 
+2. `docker pull alpine` 
+3. em Dockerfile
+
+```xml
+FROM golang as exec
+
+COPY app.go /go/src/app/
+
+ENV GO111MODULE=auto
+
+WORKDIR /go/src/app/
+
+RUN go build -o app.go .
+
+FROM alpine
+
+WORKDIR /appexec
+
+COPY --from=exec /go/src/app /appexec
+RUN chmod -R 755 /appexec
+ENTRYPOINT ./app.go
+```
+
+1. no app.go
+
+```go
+package main
+import(
+"fmt"
+)
+
+func main(){
+fmt.Println("Qual é o seu nome: ")
+var name string
+fmt.Scanln(&name)
+fmt.Printf("Oi, %s! Eu sou a linguagem Go! ", name)
+}
+```
+
+`docker stats meuapp`
+docker update meuapp -m 128M --memory-swap -1 --cpus 0.2

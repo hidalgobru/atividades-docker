@@ -1,0 +1,22 @@
+`dpkg` é o gerenciador de pacotes do Ubuntu. No `dpkg.log` , Ele registra eventos relacionados à instalação, remoção e atualização de pacotes no sistema.
+
+1. Dentro de `/usr/local/bin#: nano logs-scripts.sh` 
+
+```bash
+#!/bin/bash
+
+echo "$(date)"
+
+echo "Executando o script para mostrar logs do sistema..."
+
+# -f verifica se o arquivo especificado existe e é um arquivo regular
+# tail exibe as últimas linhas de um arquivo.
+if [ -f /var/log/dpkg.log ]; then 
+    echo "Ultimos logs do sistema (de /var/log/dpkg.log):"
+    tail -n 10 /var/log/dpkg.log
+else
+    echo "Arquivo /var/log/dpkg.lg nao encontrado."
+fi
+```
+
+1. `cat logs-scripts.sh`

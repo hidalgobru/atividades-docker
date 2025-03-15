@@ -1,0 +1,4 @@
+1. `docker ps -a` 
+2. `docker stop <container_id_ou_nome>`
+3. `docker rm <container_id_ou_nome>`
+4. remover todos os containers → `docker container prune`

@@ -1,0 +1,15 @@
+1. `docker run --name cont-mysql -v /data/mysql-A:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=senha123 -d mysql`
+2. `docker exec -it cont-mysql mysql -uroot -p` 
+3. dentro do mysql:
+
+```sql
+CREATE DATABASE test;
+USE test;
+CREATE TABLE sample (id INT, name VARCHAR(50));
+INSERT INTO sample VALUES (1, 'test data');
+SELECT * FROM sample;
+```
+
+1. pra parar o container `docker stop mysql-db` →`docker rm mysql-db`
+2. `docker run --name cont-mysql -v /data/mysql-A:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=senha123 -d mysql`
+3. `docker exec -it mysql-db mysql -uroot -p -e "USE test; SELECT * FROM sample;”`
